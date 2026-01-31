@@ -8,6 +8,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_app/core/app_contstants.dart';
 import 'package:todo_app/features/auth/auth_screen.dart';
 import 'package:todo_app/features/auth/models/user_model.dart';
+import 'package:todo_app/features/home/models/task_model.dart';
+import 'package:todo_app/features/home/widgets/add_task_row.dart';
+import 'package:todo_app/features/home/widgets/home_app_bar.dart';
+import 'package:todo_app/features/home/widgets/task_item.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -21,28 +25,21 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding:  EdgeInsets.symmetric(horizontal: 16.0.w),
           child: Column(children: [
-            Row(
-              children: [
-                Expanded(child: Column(
-
-            crossAxisAlignment: CrossAxisAlignment.start
-            ,children: [
-                  Text(userData?.name??"",style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold
-                  ),),
-                  Text("Have a nice day",style: TextStyle(
-                    fontSize: 20.sp,
-                  ),)
-                ],)),
-
-                CircleAvatar(
-                  radius: 40.r,
-                  backgroundImage:Image.file(File(userData?.image??"")).image ,
-                ),
-
-                Text("test"),
-              ],
+            if(userData!=null)
+            HomeAppBar(userData: userData),
+            SizedBox(height: 20.h,),
+            AddTaskRow(),
+            SizedBox(height: 20.h,),
+            Expanded(
+              child: ListView.separated(itemBuilder: (context,index){
+                return Dismissible(
+                  background: Icon(Icons.delete),
+                  secondaryBackground: Icon(Icons.add_a_photo),
+                key: UniqueKey(),
+                child: TaskItem(
+                  task: allTasks[index],
+                ));
+              }, separatorBuilder: (context,index)=>SizedBox(height: 10.h,), itemCount: allTasks.length),
             )
           ],),
         ),
