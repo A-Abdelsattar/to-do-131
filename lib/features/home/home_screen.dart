@@ -40,6 +40,7 @@ class HomeScreen extends StatelessWidget {
                   radius: 40.r,
                   backgroundImage:Image.file(File(userData?.image??"")).image ,
                 ),
+                Text("test home")
               ],
             )
           ],),
