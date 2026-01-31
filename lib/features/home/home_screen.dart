@@ -40,10 +40,6 @@ class HomeScreen extends StatelessWidget {
                   radius: 40.r,
                   backgroundImage:Image.file(File(userData?.image??"")).image ,
                 ),
-                IconButton(onPressed: (){
-                  Hive.box<UserModel>(AppConstants.userBox).clear();
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AuthScreen()));
-                }, icon: Icon(Icons.logout,color: Colors.red,))
               ],
             )
           ],),
