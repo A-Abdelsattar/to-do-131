@@ -14,9 +14,6 @@ class TodoApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-        theme: ThemeData(
-
-        ),
         home: SplashScreen(),
       ),
     );

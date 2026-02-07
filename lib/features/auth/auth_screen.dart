@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todo_app/core/widgets/custom_app_button.dart';
+import 'package:todo_app/core/widgets/custom_text_form_filed.dart';
 import 'package:todo_app/features/auth/models/user_model.dart';
 import 'package:todo_app/features/home/home_screen.dart';
 
@@ -80,21 +81,9 @@ class _AuthScreenState extends State<AuthScreen> {
             Divider(
               color: Colors.indigo,
             ),
-            TextFormField(
+            CustomTextFormFiled(
               controller: nameController,
-              onTapOutside: (v){
-
-                FocusScope.of(context).unfocus();
-
-              },
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.indigo
-                  )
-                ),
-              ),
+              hintText: "Enter Your Name",
             ),
 
                CustomAppButton(
