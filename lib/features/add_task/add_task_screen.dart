@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app/core/app_contstants.dart';
 import 'package:todo_app/core/widgets/custom_app_button.dart';
 import 'package:todo_app/core/widgets/custom_text_form_filed.dart';
 import 'package:todo_app/features/home/models/task_model.dart';
@@ -102,6 +104,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                      });
                    },
                  ),
+
                  Row(
                    children: [
                      Expanded(child: CustomTextFormFiled(
@@ -169,10 +172,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               onPressed: (){
 
                 if( formKey.currentState?.validate()??false){
+
+                  Hive.box<TaskModel>(AppConstants.taskBox).add(TaskModel(title: titleController.text,
+                      startTime: startTimeController.text??"", endTime: endTimeController.text??"",
+                      description: descriptionController.text,
+                      statusText: "ToDo", color: taskColors[activeIndex].toARGB32()));
+
                   allTasks.add(TaskModel(title: titleController.text,
                       startTime: startTimeController.text??"", endTime: endTimeController.text??"",
                       description: descriptionController.text,
-                      statusText: "ToDo", color: taskColors[activeIndex]));
+                      statusText: "ToDo", color: taskColors[activeIndex].toARGB32()));
                   Navigator.pop(context);
                 }
 

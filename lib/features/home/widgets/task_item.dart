@@ -13,7 +13,7 @@ class TaskItem extends StatelessWidget {
       padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.r),
-        color: task.color
+        color: Color(task.color)
       ),
       child: Row(
         children: [
